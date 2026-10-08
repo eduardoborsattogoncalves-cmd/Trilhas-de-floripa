@@ -150,12 +150,12 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             padding: 1.5rem 1.25rem;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
 
         .stat-card h3 {
@@ -170,7 +170,7 @@
             font-size: 0.9rem;
             margin-bottom: 0;
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 700;
             opacity: 0.95;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -663,6 +663,9 @@
 
     <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
+        // Limpa qualquer cache antigo do navegador
+        localStorage.clear();
+
         const imagensFloripa = {
             lagoinha: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
             gravata: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
@@ -672,7 +675,7 @@
             feiticeiras: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
         };
 
-        const trilhasIniciais = [
+        const trilhas = [
             {
                 id: 1,
                 nome: "Lagoinha do Leste",
@@ -747,13 +750,11 @@
             }
         ];
 
-        let trilhas = trilhasIniciais;
-
         function renderTrilhas(lista) {
             const container = document.getElementById('trilhas-container');
             container.innerHTML = '';
 
-            if(lista.length === 0) {
+            if(!lista || lista.length === 0) {
                 container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">Nenhuma trilha encontrada para os filtros selecionados.</p>`;
                 return;
             }
@@ -814,4 +815,47 @@
             const dificuldade = document.getElementById('filter-dificuldade').value;
 
             const filtradas = trilhas.filter(t => {
-                const matchNome = t.nome.toLowerCase().includes(busca
+                const matchNome = t.nome.toLowerCase().includes(busca);
+                const matchRegiao = regiao === 'todas' || t.regiao === regiao;
+                const matchDif = dificuldade === 'todas' || t.dificuldade === dificuldade;
+                return matchNome && matchRegiao && matchDif;
+            });
+
+            renderTrilhas(filtradas);
+        }
+
+        document.getElementById('search-input').addEventListener('input', aplicarFiltros);
+        document.getElementById('filter-regiao').addEventListener('change', aplicarFiltros);
+        document.getElementById('filter-dificuldade').addEventListener('change', aplicarFiltros);
+
+        document.getElementById('trilha-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const novaTrilha = {
+                id: Date.now(),
+                nome: document.getElementById('nome').value,
+                regiao: document.getElementById('regiao').value,
+                dificuldade: document.getElementById('dificuldade').value,
+                distancia: parseFloat(document.getElementById('distancia').value),
+                elevacao: parseInt(document.getElementById('elevacao').value),
+                sinalizacao: document.getElementById('sinalizacao').value,
+                lixo: document.getElementById('lixo').value,
+                atencao: document.getElementById('atencao').value || 'Sem avisos registrados.',
+                imagem: document.getElementById('imagem').value || imagensFloripa.lagoinha
+            };
+
+            trilhas.unshift(novaTrilha);
+            renderTrilhas(trilhas);
+            
+            this.reset();
+            alert('Trilha cadastrada com sucesso!');
+        });
+
+        // Executa imediatamente ao carregar
+        window.onload = function() {
+            renderTrilhas(trilhas);
+        };
+        renderTrilhas(trilhas);
+    </script>
+</body>
+</html>
