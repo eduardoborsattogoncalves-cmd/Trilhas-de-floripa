@@ -213,3 +213,639 @@
 
         .input-group {
             position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.8rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            background-color: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        .input-group select {
+            padding-left: 1rem;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        }
+
+        /* GRID DE TRILHAS */
+        .trilhas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .trilha-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .trilha-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(45, 106, 79, 0.3);
+        }
+
+        .trilha-img-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .trilha-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .trilha-card:hover .trilha-img {
+            transform: scale(1.05);
+        }
+
+        .dificuldade-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            backdrop-filter: blur(4px);
+            text-transform: uppercase;
+        }
+
+        .dif-facil { background-color: rgba(16, 185, 129, 0.9); }
+        .dif-medio { background-color: rgba(245, 158, 11, 0.9); }
+        .dif-dificil { background-color: rgba(239, 68, 68, 0.9); }
+
+        .regiao-tag {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(15, 23, 42, 0.75);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .trilha-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .trilha-nome {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .trilha-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            background: #f8fafc;
+            padding: 0.75rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .spec-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .spec-item strong {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .trilha-info-list {
+            list-style: none;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .trilha-info-list li {
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trilha-info-list i {
+            width: 16px;
+            color: var(--primary-light);
+        }
+
+        .btn-detalhes {
+            margin-top: auto;
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-main);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-detalhes:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* FORMULARIO */
+        .form-section {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: #fff;
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 1.5rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .controls-card { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-mountain-sun"></i>
+                <span>Trilhas Floripa</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#trilhas" class="nav-link active">Explorar Trilhas</a></li>
+                <li><a href="#estatisticas" class="nav-link">Estatísticas</a></li>
+                <li><a href="#cadastrar" class="nav-link">Cadastrar Trilha</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Projeto Acadêmico • Esportes de Aventura</span>
+            <h1>Mapeamento das Trilhas de Florianópolis</h1>
+            <p>Plataforma colaborativa para catalogação, avaliação ambiental e monitoramento de condições das atividades ao ar livre na Ilha da Magia.</p>
+            
+            <div class="hero-stats" id="estatisticas">
+                <div class="stat-card">
+                    <h3 id="stat-total">6</h3>
+                    <p>Trilhas Mapeadas</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-distancia">32.5 km</h3>
+                    <p>Extensão Total</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-sinalizacao">83%</h3>
+                    <p>Com Sinalização</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+
+        <!-- CONTROLES E FILTROS -->
+        <div class="section-header" id="trilhas">
+            <div>
+                <h2 class="section-title">Catálogo de Trilhas</h2>
+                <p class="section-subtitle">Consulte e filtre as opções de esportes de aventura disponíveis</p>
+            </div>
+        </div>
+
+        <div class="controls-card">
+            <div class="input-group">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Buscar trilha por nome...">
+            </div>
+            <div class="input-group">
+                <select id="filter-regiao">
+                    <option value="todas">Todas as Regiões</option>
+                    <option value="Sul">Sul da Ilha</option>
+                    <option value="Leste">Leste da Ilha</option>
+                    <option value="Norte">Norte da Ilha</option>
+                    <option value="Centro">Centro / Central</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <select id="filter-dificuldade">
+                    <option value="todas">Todas as Dificuldades</option>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Média">Média</option>
+                    <option value="Difícil">Difícil</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- GRID DE TRILHAS -->
+        <div class="trilhas-grid" id="trilhas-container">
+            <!-- Os cards das trilhas serão renderizados dinamicamente via JS -->
+        </div>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <section class="form-section" id="cadastrar">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Contribua com o Mapeamento</h2>
+                    <p class="section-subtitle">Inserir novas informações ou atualizar relatórios de trilhas existentes</p>
+                </div>
+            </div>
+
+            <form id="trilha-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome da Trilha</label>
+                        <input type="text" id="nome" required placeholder="Ex: Trilha do Gravatá">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regiao">Região de Floripa</label>
+                        <select id="regiao" required>
+                            <option value="Sul">Sul da Ilha</option>
+                            <option value="Leste">Leste da Ilha</option>
+                            <option value="Norte">Norte da Ilha</option>
+                            <option value="Centro">Centro / Central</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dificuldade">Dificuldade Técnica</label>
+                        <select id="dificuldade" required>
+                            <option value="Fácil">Fácil</option>
+                            <option value="Média">Média</option>
+                            <option value="Difícil">Difícil</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distancia">Distância Total (km)</label>
+                        <input type="number" id="distancia" step="0.1" required placeholder="Ex: 4.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="elevacao">Elevação / Ganho de Altitude (m)</label>
+                        <input type="number" id="elevacao" required placeholder="Ex: 210">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imagem">URL de uma Foto (opcional)</label>
+                        <input type="url" id="imagem" placeholder="https://exemplo.com/foto.jpg">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sinalizacao">Possui Placas/Sinalização?</label>
+                        <select id="sinalizacao" required>
+                            <option value="Boa">Sim, boa sinalização</option>
+                            <option value="Parcial">Sinalização parcial / pouca</option>
+                            <option value="Nenhuma">Nenhuma sinalização</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lixo">Presença de Lixo Observada?</label>
+                        <select id="lixo" required>
+                            <option value="Limpa">Trilha limpa / preservada</option>
+                            <option value="Pouco">Pouco lixo nos pontos de descanso</option>
+                            <option value="Critico">Crítico / Necessita de mutirão de limpeza</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="atencao">Pontos de Atenção / Segurança</label>
+                        <textarea id="atencao" rows="3" placeholder="Ex: Trecho com pedras escorregadias, exposição ao sol, penhasco desprotegido..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-plus"></i>
+                    Cadastrar e Mapear Trilha
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Trabalho Acadêmico da Disciplina de <strong>Esportes de Aventura</strong></p>
+        <p style="margin-top: 0.5rem; opacity: 0.6;">Desenvolvido para mapeamento e conscientização ambiental das trilhas de Florianópolis/SC</p>
+    </footer>
+
+    <!-- JAVASCRIPT DA APLICAÇÃO -->
+    <script>
+        // Imagem padrão representativa da Ilha de Florianópolis
+        const fotoFloripaPadrao = "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80";
+
+        // Dados iniciais das trilhas
+        const trilhasIniciais = [
+            {
+                id: 1,
+                nome: "Lagoinha do Leste",
+                regiao: "Sul",
+                dificuldade: "Difícil",
+                distancia: 8.0,
+                elevacao: 340,
+                sinalizacao: "Boa",
+                lixo: "Limpa",
+                atencao: "Trechos íngremes no Morro da Coroa e pedras soltas.",
+                imagem: fotoFloripaPadrao
+            },
+            {
+                id: 2,
+                nome: "Trilha do Gravatá",
+                regiao: "Leste",
+                dificuldade: "Fácil",
+                distancia: 3.0,
+                elevacao: 120,
+                sinalizacao: "Boa",
+                lixo: "Limpa",
+                atencao: "Exposição direta ao sol na crista do morro.",
+                imagem: fotoFloripaPadrao
+            },
+            {
+                id: 3,
+                nome: "Costa da Lagoa",
+                regiao: "Leste",
+                dificuldade: "Média",
+                distancia: 7.5,
+                elevacao: 150,
+                sinalizacao: "Boa",
+                lixo: "Pouco",
+                atencao: "Terreno com raízes expostas e trechos úmidos.",
+                imagem: fotoFloripaPadrao
+            },
+            {
+                id: 4,
+                nome: "Trilha de Naufragados",
+                regiao: "Sul",
+                dificuldade: "Média",
+                distancia: 5.2,
+                elevacao: 180,
+                sinalizacao: "Boa",
+                lixo: "Limpa",
+                atencao: "Lama em dias de chuva perto do riacho.",
+                imagem: fotoFloripaPadrao
+            },
+            {
+                id: 5,
+                nome: "Poção do Córrego Grande",
+                regiao: "Centro",
+                dificuldade: "Fácil",
+                distancia: 1.8,
+                elevacao: 60,
+                sinalizacao: "Parcial",
+                lixo: "Pouco",
+                atencao: "Pedras escorregadias perto da cachoeira.",
+                imagem: fotoFloripaPadrao
+            },
+            {
+                id: 6,
+                nome: "Trilha das Feiticeiras",
+                regiao: "Norte",
+                dificuldade: "Média",
+                distancia: 7.0,
+                elevacao: 210,
+                sinalizacao: "Parcial",
+                lixo: "Limpa",
+                atencao: "Subida íngreme na saída da Praia dos Ingleses.",
+                imagem: fotoFloripaPadrao
+            }
+        ];
+
+        // Força atualização no localStorage com as novas imagens
+        localStorage.setItem('trilhas_floripa', JSON.stringify(trilhasIniciais));
+        let trilhas = trilhasIniciais;
+
+        // Renderizar trilhas
+        function renderTrilhas(lista) {
+            const container = document.getElementById('trilhas-container');
+            container.innerHTML = '';
+
+            if(lista.length === 0) {
+                container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">Nenhuma trilha encontrada para os filtros selecionados.</p>`;
+                return;
+            }
+
+            lista.forEach(t => {
+                const classDif = t.dificuldade === 'Fácil' ? 'dif-facil' : t.dificuldade === 'Média' ? 'dif-medio' : 'dif-dificil';
+                
+                const cardHtml = `
+                    <div class="trilha-card">
+                        <div class="trilha-img-wrapper">
+                            <img src="${t.imagem || fotoFloripaPadrao}" class="trilha-img" alt="${t.nome}">
+                            <span class="dificuldade-tag ${classDif}">${t.dificuldade}</span>
+                            <span class="regiao-tag">Região ${t.regiao}</span>
+                        </div>
+                        <div class="trilha-body">
+                            <h3 class="trilha-nome">${t.nome}</h3>
+                            <div class="trilha-specs">
+                                <div class="spec-item">
+                                    <span>Distância</span>
+                                    <strong>${t.distancia} km</strong>
+                                </div>
+                                <div class="spec-item">
+                                    <span>Elevação</span>
+                                    <strong>${t.elevacao}m</strong>
+                                </div>
+                                <div class="spec-item">
+                                    <span>Sinalização</span>
+                                    <strong>${t.sinalizacao}</strong>
+                                </div>
+                            </div>
+                            <ul class="trilha-info-list">
+                                <li><i class="fa-solid fa-trash-can"></i> Estado: ${t.lixo}</li>
+                                <li><i class="fa-solid fa-triangle-exclamation"></i> ${t.atencao}</li>
+                            </ul>
+                            <button class="btn-detalhes" onclick="alert('Trilha: ${t.nome}\\nDistância: ${t.distancia} km\\nElevação: ${t.elevacao}m\\nPontos de atenção: ${t.atencao}')">Ver Detalhes</button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+
+            atualizarEstatisticas();
+        }
+
+        // Atualizar estatísticas do topo
+        function atualizarEstatisticas() {
+            document.getElementById('stat-total').innerText = trilhas.length;
+            const distTotal = trilhas.reduce((acc, curr) => acc + Number(curr.distancia), 0);
+            document.getElementById('stat-distancia').innerText = distTotal.toFixed(1) + ' km';
+            
+            const comSinal = trilhas.filter(t => t.sinalizacao === 'Boa').length;
+            const pctSinal = Math.round((comSinal / trilhas.length) * 100) || 0;
+            document.getElementById('stat-sinalizacao').innerText = pctSinal + '%';
+        }
+
+        // Filtros e busca
+        function aplicarFiltros() {
+            const busca = document.getElementById('search-input').value.toLowerCase();
+            const regiao = document.getElementById('filter-regiao').value;
+            const dificuldade = document.getElementById('filter-dificuldade').value;
+
+            const filtradas = trilhas.filter(t => {
+                const matchNome = t.nome.toLowerCase().includes(busca);
+                const matchRegiao = regiao === 'todas' || t.regiao === regiao;
+                const matchDif = dificuldade === 'todas' || t.dificuldade === dificuldade;
+                return matchNome && matchRegiao && matchDif;
+            });
+
+            renderTrilhas(filtradas);
+        }
+
+        document.getElementById('search-input').addEventListener('input', aplicarFiltros);
+        document.getElementById('filter-regiao').addEventListener('change', aplicarFiltros);
+        document.getElementById('filter-dificuldade').addEventListener('change', aplicarFiltros);
+
+        // Formulário de Cadastro
+        document.getElementById('trilha-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const novaTrilha = {
+                id: Date.now(),
+                nome: document.getElementById('nome').value,
+                regiao: document.getElementById('regiao').value,
+                dificuldade: document.getElementById('dificuldade').value,
+                distancia: parseFloat(document.getElementById('distancia').value),
+                elevacao: parseInt(document.getElementById('elevacao').value),
+                sinalizacao: document.getElementById('sinalizacao').value,
+                lixo: document.getElementById('lixo').value,
+                atencao: document.getElementById('atencao').value || 'Sem avisos registrados.',
+                imagem: document.getElementById('imagem').value || fotoFloripaPadrao
+            };
+
+            trilhas.unshift(novaTrilha);
+            localStorage.setItem('trilhas_floripa', JSON.stringify(trilhas));
+            renderTrilhas(trilhas);
+            
+            this.reset();
+            alert('Trilha cadastrada com sucesso!');
+        });
+
+        // Inicialização
+        renderTrilhas(trilhas);
+    </script>
+</body>
+</html>
