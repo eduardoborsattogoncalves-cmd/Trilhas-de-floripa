@@ -101,7 +101,7 @@
         /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, rgba(27, 67, 50, 0.92), rgba(15, 23, 42, 0.85)), 
-                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
             padding: 5rem 1.5rem;
             text-align: center;
@@ -272,6 +272,7 @@
             position: relative;
             height: 200px;
             overflow: hidden;
+            background-color: #e2e8f0;
         }
 
         .trilha-img {
@@ -561,7 +562,7 @@
 
         <!-- GRID DE TRILHAS -->
         <div class="trilhas-grid" id="trilhas-container">
-            <!-- Os cards das trilhas serão renderizados dinamicamente via JS -->
+            <!-- Cards renderizados dinamicamente -->
         </div>
 
         <!-- FORMULÁRIO DE CADASTRO -->
@@ -577,7 +578,7 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="nome">Nome da Trilha</label>
-                        <input type="text" id="nome" required placeholder="Ex: Trilha do Gravatá">
+                        <input type="text" id="nome" required placeholder="Ex: Trilha da Galheta">
                     </div>
                     
                     <div class="form-group">
@@ -655,10 +656,17 @@
 
     <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
-        // Imagem padrão representativa da Ilha de Florianópolis
-        const fotoFloripaPadrao = "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80";
+        // Imagens de paisagens de ilha e trilhas de Florianópolis
+        const imagensFloripa = {
+            lagoinha: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+            gravata: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
+            costa: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
+            naufragados: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80",
+            pocao: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80",
+            feiticeiras: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
+        };
 
-        // Dados iniciais das trilhas
+        // Dados das trilhas
         const trilhasIniciais = [
             {
                 id: 1,
@@ -670,7 +678,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Trechos íngremes no Morro da Coroa e pedras soltas.",
-                imagem: fotoFloripaPadrao
+                imagem: imagensFloripa.lagoinha
             },
             {
                 id: 2,
@@ -682,7 +690,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Exposição direta ao sol na crista do morro.",
-                imagem: fotoFloripaPadrao
+                imagem: imagensFloripa.gravata
             },
             {
                 id: 3,
@@ -694,7 +702,7 @@
                 sinalizacao: "Boa",
                 lixo: "Pouco",
                 atencao: "Terreno com raízes expostas e trechos úmidos.",
-                imagem: fotoFloripaPadrao
+                imagem: imagensFloripa.costa
             },
             {
                 id: 4,
@@ -706,7 +714,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Lama em dias de chuva perto do riacho.",
-                imagem: fotoFloripaPadrao
+                imagem: imagensFloripa.naufragados
             },
             {
                 id: 5,
@@ -718,7 +726,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Pouco",
                 atencao: "Pedras escorregadias perto da cachoeira.",
-                imagem: fotoFloripaPadrao
+                imagem: imagensFloripa.pocao
             },
             {
                 id: 6,
@@ -730,13 +738,13 @@
                 sinalizacao: "Parcial",
                 lixo: "Limpa",
                 atencao: "Subida íngreme na saída da Praia dos Ingleses.",
-                imagem: fotoFloripaPadrao
+                imagem: imagensFloripa.feiticeiras
             }
         ];
 
-        // Força atualização no localStorage com as novas imagens
-        localStorage.setItem('trilhas_floripa', JSON.stringify(trilhasIniciais));
-        let trilhas = trilhasIniciais;
+        // Atualiza a memória para substituir imagens antigas acumuladas
+        localStorage.setItem('trilhas_floripa_v2', JSON.stringify(trilhasIniciais));
+        let trilhas = JSON.parse(localStorage.getItem('trilhas_floripa_v2'));
 
         // Renderizar trilhas
         function renderTrilhas(lista) {
@@ -754,7 +762,7 @@
                 const cardHtml = `
                     <div class="trilha-card">
                         <div class="trilha-img-wrapper">
-                            <img src="${t.imagem || fotoFloripaPadrao}" class="trilha-img" alt="${t.nome}">
+                            <img src="${t.imagem}" class="trilha-img" alt="${t.nome}">
                             <span class="dificuldade-tag ${classDif}">${t.dificuldade}</span>
                             <span class="regiao-tag">Região ${t.regiao}</span>
                         </div>
@@ -816,36 +824,4 @@
         }
 
         document.getElementById('search-input').addEventListener('input', aplicarFiltros);
-        document.getElementById('filter-regiao').addEventListener('change', aplicarFiltros);
-        document.getElementById('filter-dificuldade').addEventListener('change', aplicarFiltros);
-
-        // Formulário de Cadastro
-        document.getElementById('trilha-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const novaTrilha = {
-                id: Date.now(),
-                nome: document.getElementById('nome').value,
-                regiao: document.getElementById('regiao').value,
-                dificuldade: document.getElementById('dificuldade').value,
-                distancia: parseFloat(document.getElementById('distancia').value),
-                elevacao: parseInt(document.getElementById('elevacao').value),
-                sinalizacao: document.getElementById('sinalizacao').value,
-                lixo: document.getElementById('lixo').value,
-                atencao: document.getElementById('atencao').value || 'Sem avisos registrados.',
-                imagem: document.getElementById('imagem').value || fotoFloripaPadrao
-            };
-
-            trilhas.unshift(novaTrilha);
-            localStorage.setItem('trilhas_floripa', JSON.stringify(trilhas));
-            renderTrilhas(trilhas);
-            
-            this.reset();
-            alert('Trilha cadastrada com sucesso!');
-        });
-
-        // Inicialização
-        renderTrilhas(trilhas);
-    </script>
-</body>
-</html>
+        document.getElementById('filter
