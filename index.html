@@ -150,23 +150,30 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 1.25rem;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
         .stat-card h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: #fef3c7;
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
         }
 
         .stat-card p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-bottom: 0;
-            opacity: 0.8;
+            color: #ffffff;
+            font-weight: 600;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* MAIN LAYOUT */
@@ -656,7 +663,6 @@
 
     <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
-        // Imagens de paisagens de ilha e trilhas de Florianópolis
         const imagensFloripa = {
             lagoinha: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
             gravata: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
@@ -666,7 +672,6 @@
             feiticeiras: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
         };
 
-        // Dados das trilhas
         const trilhasIniciais = [
             {
                 id: 1,
@@ -742,11 +747,8 @@
             }
         ];
 
-        // Atualiza a memória para substituir imagens antigas acumuladas
-        localStorage.setItem('trilhas_floripa_v2', JSON.stringify(trilhasIniciais));
-        let trilhas = JSON.parse(localStorage.getItem('trilhas_floripa_v2'));
+        let trilhas = trilhasIniciais;
 
-        // Renderizar trilhas
         function renderTrilhas(lista) {
             const container = document.getElementById('trilhas-container');
             container.innerHTML = '';
@@ -796,7 +798,6 @@
             atualizarEstatisticas();
         }
 
-        // Atualizar estatísticas do topo
         function atualizarEstatisticas() {
             document.getElementById('stat-total').innerText = trilhas.length;
             const distTotal = trilhas.reduce((acc, curr) => acc + Number(curr.distancia), 0);
@@ -807,21 +808,10 @@
             document.getElementById('stat-sinalizacao').innerText = pctSinal + '%';
         }
 
-        // Filtros e busca
         function aplicarFiltros() {
             const busca = document.getElementById('search-input').value.toLowerCase();
             const regiao = document.getElementById('filter-regiao').value;
             const dificuldade = document.getElementById('filter-dificuldade').value;
 
             const filtradas = trilhas.filter(t => {
-                const matchNome = t.nome.toLowerCase().includes(busca);
-                const matchRegiao = regiao === 'todas' || t.regiao === regiao;
-                const matchDif = dificuldade === 'todas' || t.dificuldade === dificuldade;
-                return matchNome && matchRegiao && matchDif;
-            });
-
-            renderTrilhas(filtradas);
-        }
-
-        document.getElementById('search-input').addEventListener('input', aplicarFiltros);
-        document.getElementById('filter
+                const matchNome = t.nome.toLowerCase().includes(busca
