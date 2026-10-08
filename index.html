@@ -101,7 +101,7 @@
         /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, rgba(27, 67, 50, 0.92), rgba(15, 23, 42, 0.85)), 
-                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+                        url('floripa.jpg') center/cover no-repeat;
             color: white;
             padding: 5rem 1.5rem;
             text-align: center;
@@ -663,8 +663,8 @@
 
     <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
-        // Imagem confiável de Florianópolis (Ilha/Praia) via Unsplash CDN
-        const fotoFloripaPadrao = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80";
+        // Caminho local da imagem do letreiro FLORIPA carregada no mesmo repositório
+        const fotoFloripaLocal = "floripa.jpg";
 
         const trilhas = [
             {
@@ -677,7 +677,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Trechos íngremes no Morro da Coroa e pedras soltas.",
-                imagem: fotoFloripaPadrao
+                imagem: fotoFloripaLocal
             },
             {
                 id: 2,
@@ -689,7 +689,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Exposição direta ao sol na crista do morro.",
-                imagem: fotoFloripaPadrao
+                imagem: fotoFloripaLocal
             },
             {
                 id: 3,
@@ -701,7 +701,7 @@
                 sinalizacao: "Boa",
                 lixo: "Pouco",
                 atencao: "Terreno com raízes expostas e trechos úmidos.",
-                imagem: fotoFloripaPadrao
+                imagem: fotoFloripaLocal
             },
             {
                 id: 4,
@@ -713,7 +713,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Lama em dias de chuva perto do riacho.",
-                imagem: fotoFloripaPadrao
+                imagem: fotoFloripaLocal
             },
             {
                 id: 5,
@@ -725,7 +725,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Pouco",
                 atencao: "Pedras escorregadias perto da cachoeira.",
-                imagem: fotoFloripaPadrao
+                imagem: fotoFloripaLocal
             },
             {
                 id: 6,
@@ -737,7 +737,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Limpa",
                 atencao: "Subida íngreme na saída da Praia dos Ingleses.",
-                imagem: fotoFloripaPadrao
+                imagem: fotoFloripaLocal
             }
         ];
 
@@ -756,7 +756,7 @@
                 const cardHtml = `
                     <div class="trilha-card">
                         <div class="trilha-img-wrapper">
-                            <img src="${t.imagem}" class="trilha-img" alt="${t.nome}" onerror="this.onerror=null;this.src='${fotoFloripaPadrao}';">
+                            <img src="${t.imagem}" class="trilha-img" alt="${t.nome}">
                             <span class="dificuldade-tag ${classDif}">${t.dificuldade}</span>
                             <span class="regiao-tag">Região ${t.regiao}</span>
                         </div>
@@ -832,7 +832,7 @@
                 sinalizacao: document.getElementById('sinalizacao').value,
                 lixo: document.getElementById('lixo').value,
                 atencao: document.getElementById('atencao').value || 'Sem avisos registrados.',
-                imagem: document.getElementById('imagem').value || fotoFloripaPadrao
+                imagem: document.getElementById('imagem').value || fotoFloripaLocal
             };
 
             trilhas.unshift(novaTrilha);
