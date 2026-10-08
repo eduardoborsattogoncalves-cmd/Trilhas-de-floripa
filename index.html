@@ -101,7 +101,7 @@
         /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, rgba(27, 67, 50, 0.92), rgba(15, 23, 42, 0.85)), 
-                        url('https://upload.wikimedia.org/wikipedia/commons/ thumb/8/87/Beira_Mar_Norte_-_Florian%C3%B3polis_SC.jpg/1280px-Beira_Mar_Norte_-_Florian%C3%B3polis_SC.jpg') center/cover no-repeat;
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
             padding: 5rem 1.5rem;
             text-align: center;
@@ -663,8 +663,8 @@
 
     <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
-        // Imagem oficial do Letreiro FLORIPA (Beira-Mar Norte)
-        const imagemLetreiroFloripa = "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/letreiro-floripa-na-beira-mar-norte-em-florianopolis-sc-brasil-marcos-moraes.jpg";
+        // Imagem confiável de Florianópolis (Ilha/Praia) via Unsplash CDN
+        const fotoFloripaPadrao = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80";
 
         const trilhas = [
             {
@@ -677,7 +677,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Trechos íngremes no Morro da Coroa e pedras soltas.",
-                imagem: imagemLetreiroFloripa
+                imagem: fotoFloripaPadrao
             },
             {
                 id: 2,
@@ -689,7 +689,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Exposição direta ao sol na crista do morro.",
-                imagem: imagemLetreiroFloripa
+                imagem: fotoFloripaPadrao
             },
             {
                 id: 3,
@@ -701,7 +701,7 @@
                 sinalizacao: "Boa",
                 lixo: "Pouco",
                 atencao: "Terreno com raízes expostas e trechos úmidos.",
-                imagem: imagemLetreiroFloripa
+                imagem: fotoFloripaPadrao
             },
             {
                 id: 4,
@@ -713,7 +713,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Lama em dias de chuva perto do riacho.",
-                imagem: imagemLetreiroFloripa
+                imagem: fotoFloripaPadrao
             },
             {
                 id: 5,
@@ -725,7 +725,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Pouco",
                 atencao: "Pedras escorregadias perto da cachoeira.",
-                imagem: imagemLetreiroFloripa
+                imagem: fotoFloripaPadrao
             },
             {
                 id: 6,
@@ -737,7 +737,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Limpa",
                 atencao: "Subida íngreme na saída da Praia dos Ingleses.",
-                imagem: imagemLetreiroFloripa
+                imagem: fotoFloripaPadrao
             }
         ];
 
@@ -756,7 +756,7 @@
                 const cardHtml = `
                     <div class="trilha-card">
                         <div class="trilha-img-wrapper">
-                            <img src="${t.imagem}" class="trilha-img" alt="${t.nome}">
+                            <img src="${t.imagem}" class="trilha-img" alt="${t.nome}" onerror="this.onerror=null;this.src='${fotoFloripaPadrao}';">
                             <span class="dificuldade-tag ${classDif}">${t.dificuldade}</span>
                             <span class="regiao-tag">Região ${t.regiao}</span>
                         </div>
@@ -832,7 +832,7 @@
                 sinalizacao: document.getElementById('sinalizacao').value,
                 lixo: document.getElementById('lixo').value,
                 atencao: document.getElementById('atencao').value || 'Sem avisos registrados.',
-                imagem: document.getElementById('imagem').value || imagemLetreiroFloripa
+                imagem: document.getElementById('imagem').value || fotoFloripaPadrao
             };
 
             trilhas.unshift(novaTrilha);
@@ -842,9 +842,6 @@
             alert('Trilha cadastrada com sucesso!');
         });
 
-        window.onload = function() {
-            renderTrilhas(trilhas);
-        };
         renderTrilhas(trilhas);
     </script>
 </body>
