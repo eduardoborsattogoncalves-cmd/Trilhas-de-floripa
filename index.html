@@ -663,8 +663,8 @@
 
     <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
-        // Caminho local da imagem do letreiro FLORIPA carregada no mesmo repositório
-        const fotoFloripaLocal = "floripa.jpg";
+        // Link direto da foto do letreiro FLORIPA ao Pôr do Sol
+        const fotoFloripaPorDoSol = "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80";
 
         const trilhas = [
             {
@@ -677,7 +677,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Trechos íngremes no Morro da Coroa e pedras soltas.",
-                imagem: fotoFloripaLocal
+                imagem: "floripa.jpg"
             },
             {
                 id: 2,
@@ -689,7 +689,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Exposição direta ao sol na crista do morro.",
-                imagem: fotoFloripaLocal
+                imagem: "floripa.jpg"
             },
             {
                 id: 3,
@@ -701,7 +701,7 @@
                 sinalizacao: "Boa",
                 lixo: "Pouco",
                 atencao: "Terreno com raízes expostas e trechos úmidos.",
-                imagem: fotoFloripaLocal
+                imagem: "floripa.jpg"
             },
             {
                 id: 4,
@@ -713,7 +713,7 @@
                 sinalizacao: "Boa",
                 lixo: "Limpa",
                 atencao: "Lama em dias de chuva perto do riacho.",
-                imagem: fotoFloripaLocal
+                imagem: "floripa.jpg"
             },
             {
                 id: 5,
@@ -725,7 +725,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Pouco",
                 atencao: "Pedras escorregadias perto da cachoeira.",
-                imagem: fotoFloripaLocal
+                imagem: "floripa.jpg"
             },
             {
                 id: 6,
@@ -737,7 +737,7 @@
                 sinalizacao: "Parcial",
                 lixo: "Limpa",
                 atencao: "Subida íngreme na saída da Praia dos Ingleses.",
-                imagem: fotoFloripaLocal
+                imagem: "floripa.jpg"
             }
         ];
 
@@ -832,7 +832,7 @@
                 sinalizacao: document.getElementById('sinalizacao').value,
                 lixo: document.getElementById('lixo').value,
                 atencao: document.getElementById('atencao').value || 'Sem avisos registrados.',
-                imagem: document.getElementById('imagem').value || fotoFloripaLocal
+                imagem: document.getElementById('imagem').value || "floripa.jpg"
             };
 
             trilhas.unshift(novaTrilha);
